@@ -34,9 +34,9 @@
 
     <!-- http://mybatis.org/generator/configreference/jdbcConnection.html -->
     <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-      connectionURL="jdbc:mysql://ip:3306/monitor?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
-      userId="user"
-      password="pwd">
+      connectionURL="jdbc:mysql://10.124.158.222:3306/monitor?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
+      userId=""
+      password="">
     </jdbcConnection>
 
     <!-- http://mybatis.org/generator/configreference/javaTypeResolver.html -->
@@ -48,7 +48,7 @@
     <javaModelGenerator targetPackage="com.chinaunicom.modules.common.entity"
       targetProject="src/main/java">
       <property name="enableSubPackages" value="false"/>
-      <property name="constructorBased" value="true"/>
+      <property name="constructorBased" value="false"/>
       <property name="trimStrings" value="true"/>
     </javaModelGenerator>
 
