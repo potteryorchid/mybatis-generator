@@ -34,9 +34,9 @@
 
     <!-- http://mybatis.org/generator/configreference/jdbcConnection.html -->
     <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-      connectionURL="jdbc:mysql://10.124.158.222:3306/monitor?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
-      userId="monitor"
-      password="Gp5em135">
+      connectionURL="jdbc:mysql://ip:3306/monitor?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false"
+      userId="user"
+      password="pwd">
     </jdbcConnection>
 
     <!-- http://mybatis.org/generator/configreference/javaTypeResolver.html -->
