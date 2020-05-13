@@ -2,6 +2,7 @@ package com.org.mybatis.generator.api.ext;
 
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
+import java.io.Serializable;
 import java.util.List;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -40,12 +41,12 @@ public class AddLombokForEntityPlugin extends PluginAdapter {
   @Override
   public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
       IntrospectedTable introspectedTable) {
-    // import
+    // add imports
     topLevelClass.addImportedType("lombok.Data");
     topLevelClass.addImportedType("lombok.NoArgsConstructor");
     topLevelClass.addImportedType("lombok.AllArgsConstructor");
     topLevelClass.addImportedType("lombok.EqualsAndHashCode");
-
+    // add annotation
     topLevelClass.addAnnotation("@Data");
     topLevelClass.addAnnotation("@NoArgsConstructor");
     topLevelClass.addAnnotation("@AllArgsConstructor");
@@ -84,5 +85,10 @@ public class AddLombokForEntityPlugin extends PluginAdapter {
     field.setStatic(true);
     field.setVisibility(JavaVisibility.PRIVATE);
     topLevelClass.getFields().add(0, field);
+
+    FullyQualifiedJavaType type = new FullyQualifiedJavaType(Serializable.class.getName());
+
+    topLevelClass.addImportedType(type);
+    topLevelClass.getSuperInterfaceTypes().add(type);
   }
 }

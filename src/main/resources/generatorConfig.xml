@@ -9,6 +9,8 @@
       <property name="replaceString" value="Criteria"/>
     </plugin>
 
+    <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+
     <plugin type="com.org.mybatis.generator.api.ext.AddLombokForEntityPlugin">
       <property name="defaultSerialVersionUID" value="true"/>
       <property name="supperClass" value=""/>
@@ -61,8 +63,7 @@
       <property name="enableSubPackages" value="true"/>
     </javaClientGenerator>
 
-    <table tableName="prom_dic"></table>
-
+    <table tableName="sequence"></table>
 
   </context>
 </generatorConfiguration>
