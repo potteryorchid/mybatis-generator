@@ -13,12 +13,12 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
-public class AddLombokForEntityPlugin extends PluginAdapter {
+public class JavaModelPlugin extends PluginAdapter {
 
   private final String MY_SUPPER_CLASS = "supperClass";
   private String supperClass;
 
-  public AddLombokForEntityPlugin() {
+  public JavaModelPlugin() {
   }
 
   @Override
@@ -30,7 +30,7 @@ public class AddLombokForEntityPlugin extends PluginAdapter {
         Class.forName(supperClass);
       } catch (ClassNotFoundException e) {
         warnings.add(getString("ValidationError.18",
-            "com.org.mybatis.generator.api.comment.AddLombokForEntityPlugin",
+            "com.org.mybatis.generator.api.comment.JavaModelPlugin",
             "MY_SUPPER_CLASS"));
         valid = false;
       }
@@ -38,6 +38,9 @@ public class AddLombokForEntityPlugin extends PluginAdapter {
     return valid;
   }
 
+  /**
+   * Add imports and annotations. Add default Serial.
+   */
   @Override
   public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
       IntrospectedTable introspectedTable) {

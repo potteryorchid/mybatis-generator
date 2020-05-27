@@ -11,19 +11,17 @@
 
     <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
 
-    <plugin type="com.org.mybatis.generator.api.ext.AddLombokForEntityPlugin">
+    <!-- Extends plugins start -->
+    <plugin type="com.org.mybatis.generator.api.ext.JavaModelPlugin">
       <property name="defaultSerialVersionUID" value="true"/>
       <property name="supperClass" value=""/>
     </plugin>
 
-    <plugin type="com.org.mybatis.generator.api.ext.MapperClassPlugin">
-      <property name="oldSuffixStr" value="Mapper$"/>
-      <property name="replaceSuffixStr" value="Dao"/>
-    </plugin>
-
-    <plugin type="com.org.mybatis.generator.api.ext.RenameXmlMapperFileNamePlugin">
-      <property name="searchString" value="Mapper.xml$"/>
-      <property name="replaceString" value="Dao.xml"/>
+    <plugin type="com.org.mybatis.generator.api.ext.JavaClientPlugin">
+      <property name="javaClientOldSuffixStr" value="Mapper$"/>
+      <property name="javaClientReplaceSuffixStr" value="Dao"/>
+      <property name="sqlMapOldSuffixStr" value="Mapper.xml$"/>
+      <property name="sqlMapReplaceSuffixStr" value="Dao.xml"/>
     </plugin>
 
     <!-- http://mybatis.org/generator/configreference/commentGenerator.html -->
@@ -33,6 +31,7 @@
       <property name="suppressAllComments" value="false"/>
       <property name="addRemarkComments" value="true"/>
     </commentGenerator>
+    <!-- Extends plugins end -->
 
     <!-- http://mybatis.org/generator/configreference/jdbcConnection.html -->
     <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
