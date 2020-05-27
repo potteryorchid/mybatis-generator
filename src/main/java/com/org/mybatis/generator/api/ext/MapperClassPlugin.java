@@ -8,8 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.Interface;
+import org.mybatis.generator.api.dom.java.TopLevelClass;
 
-public class RenameMapperClassPlugin extends PluginAdapter {
+public class MapperClassPlugin extends PluginAdapter {
 
   private String replaceSuffixStr;
   private Pattern pattern;
@@ -38,12 +41,12 @@ public class RenameMapperClassPlugin extends PluginAdapter {
     } else {
       if (!stringHasValue(oldSuffixStr)) {
         warnings.add(getString("ValidationError.18", //$NON-NLS-1$
-            "RenameMapperClassPlugin", //$NON-NLS-1$
+            "MapperClassPlugin", //$NON-NLS-1$
             "oldSuffixStr")); //$NON-NLS-1$
       }
       if (!stringHasValue(replaceSuffixStr)) {
         warnings.add(getString("ValidationError.18", //$NON-NLS-1$
-            "RenameMapperClassPlugin", //$NON-NLS-1$
+            "MapperClassPlugin", //$NON-NLS-1$
             "replaceSuffixStr")); //$NON-NLS-1$
       }
     }
@@ -58,5 +61,19 @@ public class RenameMapperClassPlugin extends PluginAdapter {
     oldType = matcher.replaceAll(replaceSuffixStr);
 
     introspectedTable.setMyBatis3JavaMapperType(oldType);
+  }
+
+  /**
+   * Adding import classes and adding annotations for mapper class.
+   */
+  @Override
+  public boolean clientGenerated(Interface interfaze,
+      IntrospectedTable introspectedTable) {
+    // add import class
+    interfaze
+        .addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper"));
+    // add annotation
+    interfaze.addAnnotation("@Mapper");
+    return true;
   }
 }
